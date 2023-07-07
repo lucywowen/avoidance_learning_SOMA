@@ -1,90 +1,90 @@
-import { ParameterType } from "jspsych";
+import { ParameterType } from 'jspsych';
 import { images } from '../lib/utils';
-import { eventCodes } from '../config/main'
-import { pdSpotEncode } from '../lib/markup/photodiode'
+import { eventCodes } from '../config/main';
+import { pdSpotEncode } from '../lib/markup/photodiode';
 
 const info = {
-    name: 'probe',
-    parameters: {
-      symbol_L: {
-        type: ParameterType.STRING,
-        pretty_name: 'Symbol (left)',
-        default: null,
-        description: 'Key code of corresponding symbol for left knight'
-      },
-      symbol_R: {
-        type: ParameterType.STRING,
-        pretty_name: 'Symbol (right)',
-        default: null,
-        description: 'Key code of corresponding symbol for right knight'
-      },
-      outcome_L: {
-        type: ParameterType.STRING,
-        pretty_name: 'Feedback (left)',
-        default: null,
-        description: 'Outcome for left knight.'
-      },
-      outcome_R: {
-        type: ParameterType.STRING,
-        pretty_name: 'Feedback (right)',
-        default: null,
-        description: 'Outcome for right knight.'
-      },
-      context: {
-        type:  ParameterType.STRING,
-        pretty_name: 'Condition',
-        description: 'Win or lose condition'
-      },
-      choices: {
-        type: ParameterType.KEYCODE,
-        array: true,
-        pretty_name: 'Choices',
-        default: ['arrowleft','arrowright'],
-        description: 'The keys the subject is allowed to press to respond to the stimulus.'
-      },
-      choice_duration: {
-        type: ParameterType.INT,
-        pretty_name: 'Trial duration',
-        default: 10000,
-        description: 'Duration of choice selection phase.'
-      },
-      robot_duration: {
-        type: ParameterType.INT,
-        pretty_name: 'Trial duration',
-        default: 500,
-        description: 'Duration of choice indication phase.'
-      }
-    }
-  }
+  name: 'probe',
+  parameters: {
+    symbol_L: {
+      type: ParameterType.STRING,
+      pretty_name: 'Symbol (left)',
+      default: null,
+      description: 'Key code of corresponding symbol for left knight',
+    },
+    symbol_R: {
+      type: ParameterType.STRING,
+      pretty_name: 'Symbol (right)',
+      default: null,
+      description: 'Key code of corresponding symbol for right knight',
+    },
+    outcome_L: {
+      type: ParameterType.STRING,
+      pretty_name: 'Feedback (left)',
+      default: null,
+      description: 'Outcome for left knight.',
+    },
+    outcome_R: {
+      type: ParameterType.STRING,
+      pretty_name: 'Feedback (right)',
+      default: null,
+      description: 'Outcome for right knight.',
+    },
+    context: {
+      type: ParameterType.STRING,
+      pretty_name: 'Condition',
+      description: 'Win or lose condition',
+    },
+    choices: {
+      type: ParameterType.KEYCODE,
+      array: true,
+      pretty_name: 'Choices',
+      default: ['arrowleft', 'arrowright'],
+      description: 'The keys the subject is allowed to press to respond to the stimulus.',
+    },
+    choice_duration: {
+      type: ParameterType.INT,
+      pretty_name: 'Trial duration',
+      default: 10000,
+      description: 'Duration of choice selection phase.',
+    },
+    robot_duration: {
+      type: ParameterType.INT,
+      pretty_name: 'Trial duration',
+      default: 500,
+      description: 'Duration of choice indication phase.',
+    },
+  },
+};
 
 /**
-   * **probe-trials**
-   *
-   * jsPsych plugin for probe trials
-   *
-   * @author Lucy Owen
-   * @see {}
-   */
+ * **probe-trials**
+ *
+ * jsPsych plugin for probe trials
+ *
+ * @author Lucy Owen
+ * @see {}
+ */
 class ProbePlugin {
   constructor(jsPsych) {
-      this.jsPsych = jsPsych;
+    this.jsPsych = jsPsych;
   }
   trial(display_element, trial) {
     //---------------------------------------//
     // Define HTML.
     //---------------------------------------//
 
-    var background_images = { 
+    var background_images = {
       forrest_1: images['forrest_1.jpg'],
-      forrest_2: images['forrest_2.jpg'], 
+      forrest_2: images['forrest_2.jpg'],
       forrest_3: images['forrest_3.jpg'],
       forrest_4: images['forrest_4.jpg'],
       desert_1: images['desert_1.jpg'],
       desert_2: images['desert_2.jpg'],
-      desert_3: images['desert_3.jpg'], 
+      desert_3: images['desert_3.jpg'],
       desert_4: images['desert_4.jpg'],
-    }
-  
+    };
+
     // Initialize HTML.
     var new_html = `<style>
     body {
@@ -102,12 +102,14 @@ class ProbePlugin {
 
     // Draw background.
 
-    new_html += `<div class="landscape-sky" style="background: url(${background_images[trial.context]}) repeat top center"</div>`;
-
+    new_html += `<div class="landscape-sky" style="background: url(${
+      background_images[trial.context]
+    }) repeat top center"</div>`;
 
     // Draw screens
     new_html += '<div class="screen" side="left"><div class="screen-msg" id="screenL"></div></div>';
-    new_html += '<div class="screen" side="right"><div class="screen-msg" id="screenR"></div></div>';
+    new_html +=
+      '<div class="screen" side="right"><div class="screen-msg" id="screenR"></div></div>';
 
     // Draw platforms
     new_html += '<div class="platform" id="platformL" side="left"></div>';
@@ -127,7 +129,7 @@ class ProbePlugin {
     new_html += '<div class="right"></div>';
     new_html += `<div class="rune" id="runeL">${trial.symbol_L}</div>`;
     new_html += '</div>';
-    new_html += '<div class="shado"></div>'
+    new_html += '<div class="shado"></div>';
     new_html += '</div>';
 
     // Draw right robot.
@@ -142,7 +144,7 @@ class ProbePlugin {
     new_html += '<div class="right"></div>';
     new_html += `<div class="rune" id="runeR">${trial.symbol_R}</div>`;
     new_html += '</div>';
-    new_html += '<div class="shado"></div>'
+    new_html += '<div class="shado"></div>';
     new_html += '</div>';
 
     new_html += '</div>';
@@ -164,7 +166,6 @@ class ProbePlugin {
 
     // function to handle responses by the subject
     var after_response = (info) => {
-
       // Kill any timeout handlers / keyboard listeners
       this.jsPsych.pluginAPI.clearAllTimeouts();
       this.jsPsych.pluginAPI.cancelKeyboardResponse(keyboardListener);
@@ -190,17 +191,15 @@ class ProbePlugin {
         display_element.querySelector('#visorL').setAttribute('status', 'chosen');
       } else {
         display_element.querySelector('#visorR').setAttribute('status', 'chosen');
-      }      
+      }
 
-      this.jsPsych.pluginAPI.setTimeout(function() {
+      this.jsPsych.pluginAPI.setTimeout(function () {
         end_trial();
       }, trial.robot_duration);
-
     };
 
     // function to handle missed responses
     var missed_response = () => {
-
       // Kill all setTimeout handlers.
       this.jsPsych.pluginAPI.clearAllTimeouts();
       this.jsPsych.pluginAPI.cancelAllKeyboardResponses();
@@ -208,34 +207,33 @@ class ProbePlugin {
       const code = eventCodes.missed;
       pdSpotEncode(code);
       trial.missed_code = code;
-      
+
       // Display warning message.
-      const msg = '<p style="font-size: 20px; line-height: 1.5em">You did not respond within the allotted time. Please pay more attention on the next trial.<br><br><b>Warning:</b> If you miss too many trials, we may end the exepriment early and reject your work.';
+      const msg =
+        '<p style="font-size: 20px; line-height: 1.5em">You did not respond within the allotted time. Please pay more attention on the next trial.<br><br><b>Warning:</b> If you miss too many trials, we may end the exepriment early and reject your work.';
 
       display_element.innerHTML = msg;
 
-      this.jsPsych.pluginAPI.setTimeout(function() {
+      this.jsPsych.pluginAPI.setTimeout(function () {
         end_trial();
       }, 5000);
-
-    }
+    };
 
     var end_trial = () => {
-
       if (typeof trial.stimulus == 'undefined') {
-        trial.stimulus='probe';
+        trial.stimulus = 'probe';
       }
       // gather the data to store for the trial
       var trial_data = {
-        "symbol_L": trial.symbol_L,
-        "symbol_R": trial.symbol_R,
-        "rt": response.rt,
-        "response_code":response.code,
-        "display_code":trial.display_code,
-        "missed_code":trial.missed_code,
-        "stimulus": trial.stimulus,
-        "key_press": response.key,
-        "context": trial.context,
+        symbol_L: trial.symbol_L,
+        symbol_R: trial.symbol_R,
+        rt: response.rt,
+        response_code: response.code,
+        display_code: trial.display_code,
+        missed_code: trial.missed_code,
+        stimulus: trial.stimulus,
+        key_press: response.key,
+        context: trial.context,
       };
 
       // clear the display
@@ -243,7 +241,6 @@ class ProbePlugin {
 
       // move on to the next trial
       this.jsPsych.finishTrial(trial_data);
-
     };
 
     // start the response listener
@@ -253,17 +250,16 @@ class ProbePlugin {
         valid_responses: trial.choices,
         rt_method: 'performance',
         persist: false,
-        allow_held_key: false
+        allow_held_key: false,
       });
     }
 
     // end trial if choice_duration is set
     if (trial.choice_duration !== null) {
-      this.jsPsych.pluginAPI.setTimeout(function() {
+      this.jsPsych.pluginAPI.setTimeout(function () {
         missed_response();
       }, trial.choice_duration);
     }
-
   }
 }
 ProbePlugin.info = info;
