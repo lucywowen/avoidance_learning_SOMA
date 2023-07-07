@@ -10,7 +10,7 @@ import jsPsychSurveyMultiChoice from '@jspsych/plugin-survey-multi-choice';
 import jsPsychCallFunction from '@jspsych/plugin-call-function';
 import jsPsychImageKeyboardResponse from '@jspsych/plugin-image-keyboard-response';
 import jsPsychHtmlKeyboardResponse from '@jspsych/plugin-html-keyboard-response';
-import jspsychPluginHtml from '@adp-psych/jspsych-plugin-html';
+// import jspsychPluginHtml from '@adp-psych/jspsych-plugin-html';
 import 'jspsych/css/jspsych.css';
 import '../css/robots-css.min.css';
 import { images } from '../lib/utils';
@@ -91,7 +91,7 @@ function buildTimeline(jsPsych) {
   context_array = context_array.concat(['gray']);
   context_array = context_array.concat(jsPsych.randomization.repeat(learn_2_array, 1));
 
-  var debug = false;
+  var debug = true;
 
   // Define missed repsonses count.
   var missed_threshold = 10;
@@ -114,104 +114,104 @@ function buildTimeline(jsPsych) {
   //---------------------------------------//
   // sample function that might be used to check if a subject has given
 
-  const consentFormHtml = `
-    <article id="pcf" class="instructions">
-      <h1>Participant Consent Form</h1>
-      <p>
-      <p>                                  </p>
-      <pCONSENT FOR RESEARCH PARTICIPATION</p>
-      <p><strong>Assessing symptom and mood dynamics in pain using a
-      smartphone application</strong></p>
-      </blockquote>
-      <p><mark>Online Task Sub-study: Perceptual Learning Computer Game Pilot
-      Study</mark></p>
-      <p>V4, 1/25/2023</p>
-      <blockquote>
-      <p><You are invited to take part in a Brown University research
-      study. Your participation is voluntary.</p>
-      <ul>
-      <li><p style="text-align: left;">RESEARCHER:Frederike Petzschner, Ph.D.</p></li>
-      <li><p style="text-align: left;">PURPOSE:This study is about assessing changes in how you learn
-      and perceive different stimuli during an online computer game between
-      adults with and without different common physical or psychological
-      symptoms such as pain, depression, and anxiety. You are being asked to
-      participate because you are an adult over the age of 18 who is a
-      registered Prolific user and you have indicated that you either
-      experience no pain or psychological symptoms, do experience pain of
-      acute duration (for 3 months or less) or chronic duration (greater than
-      3 months), and/or that you experience some common psychological symptoms
-      like anxiety or depression.</p></li>
-      <li><p style="text-align: left;">PROCEDURES: You will be asked to complete a computer game online
-      via Prolific.</p></li>
-      <li><p style="text-align: left;">TIME INVOLVED:The study will take approximately 1-1.5 hours of
-      time.</p></li>
-      <li><p style="text-align: left;">COMPENSATION:You will be paid $8 per hour for participation in
-      this study via your existing registered Prolific account. You may
-      receive a monetary bonus of up to $4 based on your performance during
-      the game. Payments will be received from Prolific in accordance with
-      terms and conditions agreed to through this platform.</p></li>
-      <li><p style="text-align: left;">RISKS: You may feel bored or become tired during some parts of
-      the computer game but other than that there are no real risks to you.
-      You will be able to take breaks at instructed time throughout the task
-      to help minimize this. All of your data will be stored without any
-      personally identifying information on Brown University approved secure
-      servers.</p></li>
-      <li><p style="text-align: left;">BENEFITS:There are no direct benefits to you if you agree to be
-      in this research study.</p></li>
-      <li><p style="text-align: left;">CONFIDENTIALITY:To maintain confidentiality, we will assign all
-      your data a numerical code. Your responses will not be connected to your
-      identity. Please note that complete confidentiality can never be
-      guaranteed when information is transmitted over the internet.</p></li>
-      <li><p style="text-align: left;">VOLUNTARY: You do not have to be in this study if you do not want
-      to be. Even if you decide to be in this study, you can change your mind
-      and stop at any time.</p></li>
-      <li><p style="text-align: left;">CONTACT INFORMATION: If you have any questions about your
-      participation in this study, you can ask at any time, call our office at
-      Brown University at (401)863-6272 or email <a
-      href="mailto:soma@brown.edu">soma@brown.edu.</a></p></li>
-      <li><p style="text-align: left;">YOUR RIGHTS: If you have questions about your rights as a
-      research participant, you can contact Brown University’s Human Research
-      Protection Program at 401-863-3050 or email them at <a
-      href="mailto:IRB@Brown.edu">IRB@Brown.edu.</a></p></li>
-      <li><p style="text-align: left;">CONSENT TO PARTICIPATE:Clicking the link below confirms that you
-      have read and understood the information in this document, are 18 years
-      old or older and that you agree to volunteer as a research participant
-      for this study.</p></li>
-      </p>
-      <form id="consent-form">
-        <label>
-          <input type="checkbox" id="consent" />
-          I want to participate.
-        </label>
-        <p id="consent-error" class="error"></p>
-        <button type="button" class="jspsych-btn" id="begin">
-          Begin Experiment
-        </button>
-      </form>
-    </article>
-  `;
+  // const consentFormHtml = `
+  //   <article id="pcf" class="instructions">
+  //     <h1>Participant Consent Form</h1>
+  //     <p>
+  //     <p>                                  </p>
+  //     <pCONSENT FOR RESEARCH PARTICIPATION</p>
+  //     <p><strong>Assessing symptom and mood dynamics in pain using a
+  //     smartphone application</strong></p>
+  //     </blockquote>
+  //     <p><mark>Online Task Sub-study: Perceptual Learning Computer Game Pilot
+  //     Study</mark></p>
+  //     <p>V4, 1/25/2023</p>
+  //     <blockquote>
+  //     <p><You are invited to take part in a Brown University research
+  //     study. Your participation is voluntary.</p>
+  //     <ul>
+  //     <li><p style="text-align: left;">RESEARCHER:Frederike Petzschner, Ph.D.</p></li>
+  //     <li><p style="text-align: left;">PURPOSE:This study is about assessing changes in how you learn
+  //     and perceive different stimuli during an online computer game between
+  //     adults with and without different common physical or psychological
+  //     symptoms such as pain, depression, and anxiety. You are being asked to
+  //     participate because you are an adult over the age of 18 who is a
+  //     registered Prolific user and you have indicated that you either
+  //     experience no pain or psychological symptoms, do experience pain of
+  //     acute duration (for 3 months or less) or chronic duration (greater than
+  //     3 months), and/or that you experience some common psychological symptoms
+  //     like anxiety or depression.</p></li>
+  //     <li><p style="text-align: left;">PROCEDURES: You will be asked to complete a computer game online
+  //     via Prolific.</p></li>
+  //     <li><p style="text-align: left;">TIME INVOLVED:The study will take approximately 1-1.5 hours of
+  //     time.</p></li>
+  //     <li><p style="text-align: left;">COMPENSATION:You will be paid $8 per hour for participation in
+  //     this study via your existing registered Prolific account. You may
+  //     receive a monetary bonus of up to $4 based on your performance during
+  //     the game. Payments will be received from Prolific in accordance with
+  //     terms and conditions agreed to through this platform.</p></li>
+  //     <li><p style="text-align: left;">RISKS: You may feel bored or become tired during some parts of
+  //     the computer game but other than that there are no real risks to you.
+  //     You will be able to take breaks at instructed time throughout the task
+  //     to help minimize this. All of your data will be stored without any
+  //     personally identifying information on Brown University approved secure
+  //     servers.</p></li>
+  //     <li><p style="text-align: left;">BENEFITS:There are no direct benefits to you if you agree to be
+  //     in this research study.</p></li>
+  //     <li><p style="text-align: left;">CONFIDENTIALITY:To maintain confidentiality, we will assign all
+  //     your data a numerical code. Your responses will not be connected to your
+  //     identity. Please note that complete confidentiality can never be
+  //     guaranteed when information is transmitted over the internet.</p></li>
+  //     <li><p style="text-align: left;">VOLUNTARY: You do not have to be in this study if you do not want
+  //     to be. Even if you decide to be in this study, you can change your mind
+  //     and stop at any time.</p></li>
+  //     <li><p style="text-align: left;">CONTACT INFORMATION: If you have any questions about your
+  //     participation in this study, you can ask at any time, call our office at
+  //     Brown University at (401)863-6272 or email <a
+  //     href="mailto:soma@brown.edu">soma@brown.edu.</a></p></li>
+  //     <li><p style="text-align: left;">YOUR RIGHTS: If you have questions about your rights as a
+  //     research participant, you can contact Brown University’s Human Research
+  //     Protection Program at 401-863-3050 or email them at <a
+  //     href="mailto:IRB@Brown.edu">IRB@Brown.edu.</a></p></li>
+  //     <li><p style="text-align: left;">CONSENT TO PARTICIPATE:Clicking the link below confirms that you
+  //     have read and understood the information in this document, are 18 years
+  //     old or older and that you agree to volunteer as a research participant
+  //     for this study.</p></li>
+  //     </p>
+  //     <form id="consent-form">
+  //       <label>
+  //         <input type="checkbox" id="consent" />
+  //         I want to participate.
+  //       </label>
+  //       <p id="consent-error" class="error"></p>
+  //       <button type="button" class="jspsych-btn" id="begin">
+  //         Begin Experiment
+  //       </button>
+  //     </form>
+  //   </article>
+  // `;
 
-  const isNil = (x) => typeof x === 'undefined' || x === null;
+  // const isNil = (x) => typeof x === 'undefined' || x === null;
 
-  const consentErrorMessage = 'You must agree to the consent declaration before you may begin.';
+  // const consentErrorMessage = 'You must agree to the consent declaration before you may begin.';
 
-  const checkConsent = () => {
-    if (document?.querySelector('#consent')?.checked) {
-      return true;
-    }
-    const consentError = document?.querySelector('#consent-error');
-    if (!isNil(consentError)) {
-      consentError.textContent = consentErrorMessage;
-    }
-    return false;
-  };
+  // const checkConsent = () => {
+  //   if (document?.querySelector('#consent')?.checked) {
+  //     return true;
+  //   }
+  //   const consentError = document?.querySelector('#consent-error');
+  //   if (!isNil(consentError)) {
+  //     consentError.textContent = consentErrorMessage;
+  //   }
+  //   return false;
+  // };
 
-  const idTimelineNode = {
-    check_fn: checkConsent,
-    cont_btn: 'begin',
-    html: consentFormHtml,
-    type: jspsychPluginHtml,
-  };
+  // const idTimelineNode = {
+  //   check_fn: checkConsent,
+  //   cont_btn: 'begin',
+  //   html: consentFormHtml,
+  //   type: jspsychPluginHtml,
+  // };
 
   var instructions_000 = {
     type: jsPsychImageKeyboardResponse,
@@ -297,7 +297,7 @@ function buildTimeline(jsPsych) {
       'In this task, you are picking a team of knights.<br>The knights will look like the ones below.',
       'Each knight will have a <b>unique symbol</b> on its chestplate.<br>This symbol will help you identify each knight.',
       "You'll also pick your team of knights from different places, either the desert or forest.",
-      'On every turn, you will choose a knight for your team.<br>When you select a knight, it may give you:<br><b><font color=#01579b>+10 points, </font><font color=#303030>+0 points</font></b>, or <b><font color=#A41919>-10 points</font></b>.',
+      'On every turn, you will choose a knight for your team.<br>When you select a knight, it may give you:<br><b><font color=#01579b>+$2, </font><font color=#303030>+0 points</font></b>, or <b><font color=#A41919>-$2</font></b>.',
       "Once you've selected your knight, their platform and visor will light up to indicate your choice.",
       'To help you learn, we will also show you the points you<br><i>could have earned</i> if you had chosen the other knight.<br><b>NOTE:</b> You will earn points only for the knight you chose.',
       'Some knights are better than others. Some will gain points while others will avoid losing points. Try to earn as many points as you can.',
@@ -369,7 +369,7 @@ function buildTimeline(jsPsych) {
   } else {
     instructions = {
       timeline: [
-        idTimelineNode,
+        // idTimelineNode,
         instructions_000,
         instructions_00,
         pain_01,
@@ -439,42 +439,42 @@ function buildTimeline(jsPsych) {
           'px;">That is the end of the learning phase. Great job! You have made ' +
           Math.round((correct_trial_count / total_trial_count) * 100) +
           '% correct',
-        '<p style="font-size:' +
-          font_size +
-          'px;">In this next part, you will see the same knights as before, but they will be shown in new pair combinations. <br>Again, your job will be to select the knight you would like to join your team.',
-        '<p style="font-size:' +
-          font_size +
-          'px;">As you make your choices, you will not receive any feedback after your choice.',
-        '<p style="font-size:' +
-          font_size +
-          'px;">You should still choose the knight you think is better on each trial.<br>Your choices will still contribute to your performance bonus.',
-        '<p style="font-size:' +
-          font_size +
-          'px;">Get ready to make your selections.<br><br>Choose wisely!',
+        // '<p style="font-size:' +
+        //   font_size +
+        //   'px;">In this next part, you will see the same knights as before, but they will be shown in new pair combinations. <br>Again, your job will be to select the knight you would like to join your team.',
+        // '<p style="font-size:' +
+        //   font_size +
+        //   'px;">As you make your choices, you will not receive any feedback after your choice.',
+        // '<p style="font-size:' +
+        //   font_size +
+        //   'px;">You should still choose the knight you think is better on each trial.<br>Your choices will still contribute to your performance bonus.',
+        // '<p style="font-size:' +
+        //   font_size +
+        //   'px;">Get ready to make your selections.<br><br>Choose wisely!',
       ];
     },
   };
 
-  var instructions_06 = {
-    type: jsPsychInstructions,
+  // var instructions_06 = {
+  //   type: jsPsychInstructions,
 
-    pages: () => {
-      return [
-        '<p style="font-size:' +
-          font_size +
-          'px;">That is the end of the selection phase. Great job!',
-        '<p style="font-size:' +
-          font_size +
-          'px;">Take a break for a few moments and<br>click next when you are ready to continue.',
-        '<p style="font-size:' +
-          font_size +
-          'px;">Great! You are now going to <b>test</b> a new set of knights.<br>The task is the same as before.',
-        '<p style="font-size:' +
-          font_size +
-          'px;">Remember to pay close attention to the symbol on each knight<br>and try to earn as many points as you can.',
-      ];
-    },
-  };
+  //   pages: () => {
+  //     return [
+  //       '<p style="font-size:' +
+  //         font_size +
+  //         'px;">That is the end of the selection phase. Great job!',
+  //       '<p style="font-size:' +
+  //         font_size +
+  //         'px;">Take a break for a few moments and<br>click next when you are ready to continue.',
+  //       '<p style="font-size:' +
+  //         font_size +
+  //         'px;">Great! You are now going to <b>test</b> a new set of knights.<br>The task is the same as before.',
+  //       '<p style="font-size:' +
+  //         font_size +
+  //         'px;">Remember to pay close attention to the symbol on each knight<br>and try to earn as many points as you can.',
+  //     ];
+  //   },
+  // };
 
   // //---------------------------------------//
   // // Define learning phase 1.
@@ -752,236 +752,236 @@ function buildTimeline(jsPsych) {
   // // // side counterbalancing, this is 12
   // // // presentations per unique pair / side.
 
-  // Initialize phase array.
-  var learning_phase_2 = [];
-
-  // Iteratively define trials
-  for (var n = 0; n < iters; n++) {
-    // Initialize (temporary) trial array.
-    const trials = [];
-
-    // Iterate over unique pairs.
-    for (var m = 0; m < 4; m++) {
-      // for (j = 4; j < 8; j++) {
-
-      // Define metadata.
-
-      reduced_a = reduce(reward_probs_a * 100, 100);
-      diff_a = reduced_a[1] - reduced_a[0];
-      reduced_b = reduce(reward_probs_b * 100, 100);
-      diff_b = reduced_b[1] - reduced_b[0];
-
-      if (m == 0) {
-        val = 'win';
-        arr_1 = Array(reduced_a[0]).fill('zero');
-        diff_arr_1 = Array(diff_a).fill(val);
-        arr_1 = arr_1.concat(diff_arr_1);
-        arr_2 = Array(reduced_a[0]).fill(val);
-        diff_arr_2 = Array(diff_a).fill('zero');
-        arr_2 = arr_2.concat(diff_arr_2);
-        reward_prob = reward_probs_a;
-        color = context_array[6];
-      } else if (m == 1) {
-        val = 'lose';
-        arr_1 = Array(reduced_a[0]).fill('zero');
-        diff_arr_1 = Array(diff_a).fill(val);
-        arr_1 = arr_1.concat(diff_arr_1);
-        arr_2 = Array(reduced_a[0]).fill(val);
-        diff_arr_2 = Array(diff_a).fill('zero');
-        arr_2 = arr_2.concat(diff_arr_2);
-        reward_prob = reward_probs_a;
-        color = context_array[7];
-      } else if (m == 2) {
-        val = 'win';
-        arr_1 = Array(reduced_b[0]).fill('zero');
-        diff_arr_1 = Array(diff_b).fill(val);
-        arr_1 = arr_1.concat(diff_arr_1);
-        arr_2 = Array(reduced_b[0]).fill(val);
-        diff_arr_2 = Array(diff_b).fill('zero');
-        arr_2 = arr_2.concat(diff_arr_2);
-        reward_prob = reward_probs_b;
-        color = context_array[6];
-      } else {
-        val = 'lose';
-        arr_1 = Array(reduced_b[0]).fill('zero');
-        diff_arr_1 = Array(diff_b).fill(val);
-        arr_1 = arr_1.concat(diff_arr_1);
-        arr_2 = Array(reduced_b[0]).fill(val);
-        diff_arr_2 = Array(diff_b).fill('zero');
-        arr_2 = arr_2.concat(diff_arr_2);
-        reward_prob = reward_probs_b;
-        color = context_array[7];
-      }
-
-      // If you want to take away counterfactuals half time
-      // if (j == 1) { var cf = false;}
-      // else if (j == 3) { var cf = false;}
-      // else { var cf = true; }
-      // Append trial (LR).
-      console.log(jsPsych.randomization.sampleWithoutReplacement(arr_2, 1)[0]);
-      // console.log(jsPsych.randomization.sampleWithoutReplacement(arr_1,1)[0]);
-
-      LR = {
-        type: jsPsychLearning,
-        symbol_L: symbol_array_2[2 * m + 0],
-        symbol_R: symbol_array_2[2 * m + 1],
-        outcome_L: jsPsych.randomization.sampleWithoutReplacement(arr_2, 1)[0],
-        outcome_R: jsPsych.randomization.sampleWithoutReplacement(arr_1, 1)[0],
-        probs: reward_prob,
-        counterfactual: cf,
-        context: color,
-        choices: ['arrowleft', 'arrowright'],
-        correct: val == 'win' ? 'arrowleft' : 'arrowright',
-        data: { block: 2 },
-        on_finish: function (data) {
-          // Evaluate missing data
-          if (data.rt == null) {
-            // Set missing data to true.
-            data.missing = true;
-
-            // Increment counter. Check if experiment should end.
-            missed_responses++;
-            if (missed_responses >= missed_threshold) {
-              low_quality = true;
-              jsPsych.endExperiment();
-            }
-          } else {
-            // Set missing data to false.
-            data.missing = false;
-            total_trial_count++;
-            if (data.accuracy == 1) {
-              correct_trial_count++;
-            }
-          }
-        },
-      };
-
-      // Define looping node.
-      const LR_node = {
-        timeline: [LR],
-        loop_function: function (data) {
-          return data.values()[0].missing;
-        },
-      };
-      trials.push(LR_node);
-
-      // Append trial (RL).
-      RL = {
-        type: jsPsychLearning,
-        symbol_L: symbol_array_2[2 * m + 1],
-        symbol_R: symbol_array_2[2 * m + 0],
-        outcome_L: jsPsych.randomization.sampleWithoutReplacement(arr_1, 1)[0],
-        outcome_R: jsPsych.randomization.sampleWithoutReplacement(arr_2, 1)[0],
-        probs: reward_prob,
-        counterfactual: cf,
-        context: color,
-        choices: ['arrowleft', 'arrowright'],
-        correct: val == 'win' ? 'arrowright' : 'arrowleft',
-        data: { block: 2 },
-        on_finish: function (data) {
-          // Evaluate missing data
-          if (data.rt == null) {
-            // Set missing data to true.
-            data.missing = true;
-
-            // Increment counter. Check if experiment should end.
-            missed_responses++;
-            if (missed_responses >= missed_threshold) {
-              low_quality = true;
-              jsPsych.endExperiment();
-            }
-          } else {
-            // Set missing data to false.
-            data.missing = false;
-            total_trial_count++;
-            if (data.accuracy == 1) {
-              correct_trial_count++;
-            }
-          }
-        },
-      };
-
-      // Define looping node.
-      const RL_node = {
-        timeline: [RL],
-        loop_function: function (data) {
-          return data.values()[0].missing;
-        },
-      };
-      trials.push(RL_node);
-    }
-
-    // Shuffle trials. Append.
-    learning_phase_2 = learning_phase_2.concat(jsPsych.randomization.repeat(trials, 1));
-  }
-
-  // //------------------------------------//
-  // // Define probe phase 2.
-  // //------------------------------------//
-  // // Probe phases are comprised of
-  // // every possible pair combination
-  // // (28 in total) presented 4 times
-  // // (112 total trials).
-
-  // Initialize phase array.
-  var probe_phase_2 = [];
-
-  // Iteratively define trials
+  // // Initialize phase array.
+  // var learning_phase_2 = [];
 
   // // Iteratively define trials
-  // for (r = 8; r < 16; r++) {
+  // for (var n = 0; n < iters; n++) {
+  //   // Initialize (temporary) trial array.
+  //   const trials = [];
 
-  //   for (s = 8; s < 16; s++) {
+  //   // Iterate over unique pairs.
+  //   for (var m = 0; m < 4; m++) {
+  //     // for (j = 4; j < 8; j++) {
 
-  // Iteratively define trials
-  for (var r = 0; r < probe_iters; r++) {
-    for (var s = 0; s < probe_iters; s++) {
-      for (var d = 0; d < 3; d++) {
-        if (r != s) {
-          // Append trial.
-          probe = {
-            type: jsPsychProbe,
-            symbol_L: symbol_array_2[r],
-            symbol_R: symbol_array_2[s],
-            context: context_array[7 - d],
-            choices: ['arrowleft', 'arrowright'],
-            data: { block: 2 },
-            on_finish: function (data) {
-              // Evaluate missing data
-              if (data.rt == null) {
-                // Set missing data to true.
-                data.missing = true;
+  //     // Define metadata.
 
-                // Increment counter. Check if experiment should end.
-                missed_responses++;
-                if (missed_responses >= missed_threshold) {
-                  low_quality = true;
-                  jsPsych.endExperiment();
-                }
-              } else {
-                // Set missing data to false.
-                data.missing = false;
-              }
-            },
-          };
-        }
-        // Define looping node.
-        const probe_node = {
-          timeline: [probe],
-          loop_function: function (data) {
-            return data.values()[0].missing;
-          },
-        };
+  //     reduced_a = reduce(reward_probs_a * 100, 100);
+  //     diff_a = reduced_a[1] - reduced_a[0];
+  //     reduced_b = reduce(reward_probs_b * 100, 100);
+  //     diff_b = reduced_b[1] - reduced_b[0];
 
-        // Add trials twice.
-        probe_phase_2.push(probe_node);
-        probe_phase_2.push(probe_node);
-      }
-    }
-  }
+  //     if (m == 0) {
+  //       val = 'win';
+  //       arr_1 = Array(reduced_a[0]).fill('zero');
+  //       diff_arr_1 = Array(diff_a).fill(val);
+  //       arr_1 = arr_1.concat(diff_arr_1);
+  //       arr_2 = Array(reduced_a[0]).fill(val);
+  //       diff_arr_2 = Array(diff_a).fill('zero');
+  //       arr_2 = arr_2.concat(diff_arr_2);
+  //       reward_prob = reward_probs_a;
+  //       color = context_array[6];
+  //     } else if (m == 1) {
+  //       val = 'lose';
+  //       arr_1 = Array(reduced_a[0]).fill('zero');
+  //       diff_arr_1 = Array(diff_a).fill(val);
+  //       arr_1 = arr_1.concat(diff_arr_1);
+  //       arr_2 = Array(reduced_a[0]).fill(val);
+  //       diff_arr_2 = Array(diff_a).fill('zero');
+  //       arr_2 = arr_2.concat(diff_arr_2);
+  //       reward_prob = reward_probs_a;
+  //       color = context_array[7];
+  //     } else if (m == 2) {
+  //       val = 'win';
+  //       arr_1 = Array(reduced_b[0]).fill('zero');
+  //       diff_arr_1 = Array(diff_b).fill(val);
+  //       arr_1 = arr_1.concat(diff_arr_1);
+  //       arr_2 = Array(reduced_b[0]).fill(val);
+  //       diff_arr_2 = Array(diff_b).fill('zero');
+  //       arr_2 = arr_2.concat(diff_arr_2);
+  //       reward_prob = reward_probs_b;
+  //       color = context_array[6];
+  //     } else {
+  //       val = 'lose';
+  //       arr_1 = Array(reduced_b[0]).fill('zero');
+  //       diff_arr_1 = Array(diff_b).fill(val);
+  //       arr_1 = arr_1.concat(diff_arr_1);
+  //       arr_2 = Array(reduced_b[0]).fill(val);
+  //       diff_arr_2 = Array(diff_b).fill('zero');
+  //       arr_2 = arr_2.concat(diff_arr_2);
+  //       reward_prob = reward_probs_b;
+  //       color = context_array[7];
+  //     }
 
-  // Shuffle trials.
-  probe_phase_2 = jsPsych.randomization.repeat(probe_phase_2, 1);
+  //     // If you want to take away counterfactuals half time
+  //     // if (j == 1) { var cf = false;}
+  //     // else if (j == 3) { var cf = false;}
+  //     // else { var cf = true; }
+  //     // Append trial (LR).
+  //     console.log(jsPsych.randomization.sampleWithoutReplacement(arr_2, 1)[0]);
+  //     // console.log(jsPsych.randomization.sampleWithoutReplacement(arr_1,1)[0]);
+
+  //     LR = {
+  //       type: jsPsychLearning,
+  //       symbol_L: symbol_array_2[2 * m + 0],
+  //       symbol_R: symbol_array_2[2 * m + 1],
+  //       outcome_L: jsPsych.randomization.sampleWithoutReplacement(arr_2, 1)[0],
+  //       outcome_R: jsPsych.randomization.sampleWithoutReplacement(arr_1, 1)[0],
+  //       probs: reward_prob,
+  //       counterfactual: cf,
+  //       context: color,
+  //       choices: ['arrowleft', 'arrowright'],
+  //       correct: val == 'win' ? 'arrowleft' : 'arrowright',
+  //       data: { block: 2 },
+  //       on_finish: function (data) {
+  //         // Evaluate missing data
+  //         if (data.rt == null) {
+  //           // Set missing data to true.
+  //           data.missing = true;
+
+  //           // Increment counter. Check if experiment should end.
+  //           missed_responses++;
+  //           if (missed_responses >= missed_threshold) {
+  //             low_quality = true;
+  //             jsPsych.endExperiment();
+  //           }
+  //         } else {
+  //           // Set missing data to false.
+  //           data.missing = false;
+  //           total_trial_count++;
+  //           if (data.accuracy == 1) {
+  //             correct_trial_count++;
+  //           }
+  //         }
+  //       },
+  //     };
+
+  //     // Define looping node.
+  //     const LR_node = {
+  //       timeline: [LR],
+  //       loop_function: function (data) {
+  //         return data.values()[0].missing;
+  //       },
+  //     };
+  //     trials.push(LR_node);
+
+  //     // Append trial (RL).
+  //     RL = {
+  //       type: jsPsychLearning,
+  //       symbol_L: symbol_array_2[2 * m + 1],
+  //       symbol_R: symbol_array_2[2 * m + 0],
+  //       outcome_L: jsPsych.randomization.sampleWithoutReplacement(arr_1, 1)[0],
+  //       outcome_R: jsPsych.randomization.sampleWithoutReplacement(arr_2, 1)[0],
+  //       probs: reward_prob,
+  //       counterfactual: cf,
+  //       context: color,
+  //       choices: ['arrowleft', 'arrowright'],
+  //       correct: val == 'win' ? 'arrowright' : 'arrowleft',
+  //       data: { block: 2 },
+  //       on_finish: function (data) {
+  //         // Evaluate missing data
+  //         if (data.rt == null) {
+  //           // Set missing data to true.
+  //           data.missing = true;
+
+  //           // Increment counter. Check if experiment should end.
+  //           missed_responses++;
+  //           if (missed_responses >= missed_threshold) {
+  //             low_quality = true;
+  //             jsPsych.endExperiment();
+  //           }
+  //         } else {
+  //           // Set missing data to false.
+  //           data.missing = false;
+  //           total_trial_count++;
+  //           if (data.accuracy == 1) {
+  //             correct_trial_count++;
+  //           }
+  //         }
+  //       },
+  //     };
+
+  //     // Define looping node.
+  //     const RL_node = {
+  //       timeline: [RL],
+  //       loop_function: function (data) {
+  //         return data.values()[0].missing;
+  //       },
+  //     };
+  //     trials.push(RL_node);
+  //   }
+
+  //   // Shuffle trials. Append.
+  //   learning_phase_2 = learning_phase_2.concat(jsPsych.randomization.repeat(trials, 1));
+  // }
+
+  // // //------------------------------------//
+  // // // Define probe phase 2.
+  // // //------------------------------------//
+  // // // Probe phases are comprised of
+  // // // every possible pair combination
+  // // // (28 in total) presented 4 times
+  // // // (112 total trials).
+
+  // // Initialize phase array.
+  // var probe_phase_2 = [];
+
+  // // Iteratively define trials
+
+  // // // Iteratively define trials
+  // // for (r = 8; r < 16; r++) {
+
+  // //   for (s = 8; s < 16; s++) {
+
+  // // Iteratively define trials
+  // for (var r = 0; r < probe_iters; r++) {
+  //   for (var s = 0; s < probe_iters; s++) {
+  //     for (var d = 0; d < 3; d++) {
+  //       if (r != s) {
+  //         // Append trial.
+  //         probe = {
+  //           type: jsPsychProbe,
+  //           symbol_L: symbol_array_2[r],
+  //           symbol_R: symbol_array_2[s],
+  //           context: context_array[7 - d],
+  //           choices: ['arrowleft', 'arrowright'],
+  //           data: { block: 2 },
+  //           on_finish: function (data) {
+  //             // Evaluate missing data
+  //             if (data.rt == null) {
+  //               // Set missing data to true.
+  //               data.missing = true;
+
+  //               // Increment counter. Check if experiment should end.
+  //               missed_responses++;
+  //               if (missed_responses >= missed_threshold) {
+  //                 low_quality = true;
+  //                 jsPsych.endExperiment();
+  //               }
+  //             } else {
+  //               // Set missing data to false.
+  //               data.missing = false;
+  //             }
+  //           },
+  //         };
+  //       }
+  //       // Define looping node.
+  //       const probe_node = {
+  //         timeline: [probe],
+  //         loop_function: function (data) {
+  //           return data.values()[0].missing;
+  //         },
+  //       };
+
+  //       // Add trials twice.
+  //       probe_phase_2.push(probe_node);
+  //       probe_phase_2.push(probe_node);
+  //     }
+  //   }
+  // }
+
+  // // Shuffle trials.
+  // probe_phase_2 = jsPsych.randomization.repeat(probe_phase_2, 1);
 
   // Complete screen
   var complete = {
@@ -1020,10 +1020,10 @@ function buildTimeline(jsPsych) {
   timeline = timeline.concat(learning_phase_1);
   timeline = timeline.concat(instructions_05);
   timeline = timeline.concat(probe_phase_1);
-  timeline = timeline.concat(instructions_06);
-  timeline = timeline.concat(learning_phase_2);
-  timeline = timeline.concat(instructions_05);
-  timeline = timeline.concat(probe_phase_2);
+  // timeline = timeline.concat(instructions_06);
+  // timeline = timeline.concat(learning_phase_2);
+  // timeline = timeline.concat(instructions_05);
+  // timeline = timeline.concat(probe_phase_2);
   timeline = timeline.concat(complete);
   timeline = timeline.concat(final_trial);
 

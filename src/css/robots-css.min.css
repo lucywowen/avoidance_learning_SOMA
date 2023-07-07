@@ -187,15 +187,15 @@
 }
 .screen .screen-msg[outcome='win'] {
   color: #01579b;
-  transform: translate(-50%, -50%) scale(1.5);
+  transform: translate(-50%, -50%) scale(1.25);
 }
 .screen .screen-msg[outcome='lose'] {
   color: #A41919;
-  transform: translate(-50%, -50%) scale(1.5);
+  transform: translate(-50%, -50%) scale(1.25);
 }
 .screen .screen-msg[outcome='zero'] {
   color: #303030;
-  transform: translate(-50%, -50%) scale(1.5);
+  transform: translate(-50%, -50%) scale(1.25);
 }
 
 /* ---------------------------------- */
