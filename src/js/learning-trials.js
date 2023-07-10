@@ -59,7 +59,7 @@ const info = {
     choice_duration: {
       type: ParameterType.INT,
       pretty_name: 'Trial duration',
-      default: 10000,
+      default: 1000,
       description: 'Duration of choice selection phase.',
     },
     robot_duration: {
