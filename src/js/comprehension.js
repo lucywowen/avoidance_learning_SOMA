@@ -39,9 +39,9 @@ class ComprehensionPlugin {
     // Define comprehension check questions.
     var prompts = [
       'To select a knight for testing, which keys do you use?',
-      'During testing, you will earn points based on which knight(s)?',
-      '<i>True</i> or <i>False</i>: some knights will give you points more often than others.',
-      'Will the number of points I earn affect my performance bonus?',
+      'During testing, you will earn dollars based on which knight(s)?',
+      '<i>True</i> or <i>False</i>: some knights will give you dollars more often than others.',
+      'Will the number of dollars I earn affect my performance bonus?',
     ];
 
     // Define response options.
