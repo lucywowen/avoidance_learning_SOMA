@@ -59,7 +59,7 @@ const info = {
     choice_duration: {
       type: ParameterType.INT,
       pretty_name: 'Trial duration',
-      default: 1000,
+      default: 10000,
       description: 'Duration of choice selection phase.',
     },
     robot_duration: {
@@ -319,7 +319,7 @@ class LearningPlugin {
 
       // Display warning message.
       const msg =
-        '<p style="font-size: 20px; line-height: 1.5em">You did not respond within the allotted time. Please pay more attention next time.<br><br><b>Warning:</b> If you miss too many times, we may end the exepriment early.';
+        '<p style="font-size: 20px; line-height: 1.5em">You did not respond within the allotted time. Please pay more attention next time.<br><br><b>Warning:</b> If you miss too many times, we may end the experiment early.';
 
       display_element.innerHTML = msg;
 
