@@ -92,7 +92,7 @@ let db;
 try {
   db = firebase
     .initializeApp({
-      credential: firebase.credential.cert(require('./firebase-service-account.json')),
+      credential: firebase.credential.cert(require('/Users/lucyowen/Desktop/avoidance-learning-soma-firebase-adminsdk-xwdid-288312f126.json')),
     })
     .firestore();
 } catch (error) {
