@@ -155,7 +155,7 @@
 .screen {
   position: absolute;
   left: 50%;
-  top: 20%;
+  top: 25%;
   height: 15vh;
   width: 20vh;
   margin-left: -11vh;
@@ -170,13 +170,9 @@
   box-shadow: 1px 1px 1px #404040;
 }
 .screen[side='left'] {
-  position: absolute;
-  top: 40%;
   left: 25%;
 }
 .screen[side='right'] {
-  position: absolute;
-  top: 40%;
   left: 75%;
 }
 .screen .screen-msg {
