@@ -170,10 +170,12 @@
   box-shadow: 1px 1px 1px #404040;
 }
 .screen[side='left'] {
+  position: absolute;
   top: 40%;
   left: 25%;
 }
 .screen[side='right'] {
+  position: absolute;
   top: 40%;
   left: 75%;
 }
