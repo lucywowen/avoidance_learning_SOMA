@@ -381,10 +381,10 @@ function buildTimeline(jsPsych) {
     context_iters = 3;
   }
 
-  reduced_a = reduce(reward_probs * (iters * 2), iters * 2);
+  reduced_a = reduce(reward_probs * iters, iters);
   diff_a = reduced_a[1] - reduced_a[0];
 
-  multi_a = (iters * 2) / reduced_a[1];
+  multi_a = iters / reduced_a[1];
 
   not_reduced_a = reduced_a[0] * multi_a;
   not_reduced_diff_a = diff_a * multi_a;
@@ -402,8 +402,19 @@ function buildTimeline(jsPsych) {
   lose_high_array = lose_high_array.concat(diff_arr_2);
 
   lose_low_array = Array(not_reduced_a).fill('zero');
-  diff_arr_2 = Array(not_reduced_diff_a).fill('lose');
-  lose_low_array = lose_low_array.concat(diff_arr_2);
+  diff_arr_1 = Array(not_reduced_diff_a).fill('lose');
+  lose_low_array = lose_low_array.concat(diff_arr_1);
+
+  console.log('win_high_array');
+  console.log(win_high_array);
+  console.log('win_low_array');
+  console.log(win_low_array);
+
+  console.log('lose_high_array');
+  console.log(lose_high_array);
+  console.log('lose_low_array');
+  console.log(lose_low_array);
+  console.log(lose_low_array.length);
 
   var win_high_array_all;
   var win_low_array_all;
@@ -415,12 +426,14 @@ function buildTimeline(jsPsych) {
   lose_high_array_all = [];
   lose_low_array_all = [];
 
-  for (var a = 0; a < 8; a++) {
+  for (var a = 0; a < 2; a++) {
     win_high_array_all.push(jsPsych.randomization.repeat(win_high_array, 1));
     win_low_array_all.push(jsPsych.randomization.repeat(win_low_array, 1));
     lose_high_array_all.push(jsPsych.randomization.repeat(lose_high_array, 1));
     lose_low_array_all.push(jsPsych.randomization.repeat(lose_low_array, 1));
   }
+  console.log('length of arrays');
+  console.log(win_high_array_all.length);
 
   // Iteratively define trials
   for (var i = 0; i < iters; i++) {
@@ -432,31 +445,59 @@ function buildTimeline(jsPsych) {
       // Define metadata.
       total_learning_trial_count++;
 
-      if (j % 2 == 0) {
+      // if (j % 2 == 0) {
+      //   val = 'win';
+      //   prob_val_1 = win_high_array_all;
+      //   prob_val_2 = win_low_array_all;
+      //   color = context_array[3];
+      // } else {
+      //   val = 'lose';
+      //   prob_val_1 = lose_high_array_all;
+      //   prob_val_2 = lose_low_array_all;
+      //   color = context_array[4];
+      // }
+
+      if (j == 0) {
         val = 'win';
-        prob_val_1 = win_high_array_all;
-        prob_val_2 = win_low_array_all;
+        prob_val_1 = win_high_array_all[0];
+        prob_val_2 = win_low_array_all[0];
+        color = context_array[3];
+      } else if (j == 1) {
+        val = 'lose';
+        prob_val_1 = lose_high_array_all[0];
+        prob_val_2 = lose_low_array_all[0];
+        color = context_array[4];
+      } else if (j == 2) {
+        val = 'win';
+        prob_val_1 = win_high_array_all[1];
+        prob_val_2 = win_low_array_all[1];
         color = context_array[3];
       } else {
         val = 'lose';
-        prob_val_1 = lose_high_array_all;
-        prob_val_2 = lose_low_array_all;
+        prob_val_1 = lose_high_array_all[1];
+        prob_val_2 = lose_low_array_all[1];
         color = context_array[4];
       }
 
-      // console.log('probvals');
-      // console.log(prob_val_1[1][1]);
-      // console.log(prob_val_1[2 * j + 1][2 * i + 1]);
-      // console.log(prob_val_2);
-      // console.log(prob_val_2[2 * j + 1][2 * i + 1]);
+      console.log('prob_val_1[i]');
+      console.log(prob_val_1[i]);
+
+      // console.log('prob_val_2[2 * j + 0]');
+      // console.log(prob_val_2[2 * j + 0][0]);
+
+      // console.log('prob_val_1[2 * j + 0]');
+      // console.log(prob_val_1[2 * j + 0][0]);
+
+      // console.log('prob_val_2[2 * j + 0][i]');
+      // console.log(prob_val_2[2 * j + 0][i][0]);
 
       // Append trial (LR).
       var LR = {
         type: jsPsychLearning,
         symbol_L: symbol_array_1[2 * j + 0],
         symbol_R: symbol_array_1[2 * j + 1],
-        outcome_L: prob_val_2[2 * j + 0][2 * i + 0],
-        outcome_R: prob_val_1[2 * j + 0][2 * i + 0],
+        outcome_L: prob_val_2[i],
+        outcome_R: prob_val_1[i],
         probs: reward_probs,
         counterfactual: cf,
         context: color,
@@ -501,8 +542,8 @@ function buildTimeline(jsPsych) {
         type: jsPsychLearning,
         symbol_L: symbol_array_1[2 * j + 1],
         symbol_R: symbol_array_1[2 * j + 0],
-        outcome_L: prob_val_1[2 * j + 1][2 * i + 1],
-        outcome_R: prob_val_2[2 * j + 1][2 * i + 1],
+        outcome_L: prob_val_1[i],
+        outcome_R: prob_val_2[i],
         probs: reward_prob,
         counterfactual: cf,
         context: color,
