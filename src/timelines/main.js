@@ -92,8 +92,7 @@ function buildTimeline(jsPsych) {
   var total_probe_trial_count = 0;
 
   // Define probabilities (default is all 75/25%)
-  var reward_probs_a = 0.75;
-  var reward_probs_b = 0.75;
+  var reward_probs = 0.75;
 
   // Define counterfactual
   var cf = true;
@@ -332,6 +331,14 @@ function buildTimeline(jsPsych) {
     },
   };
 
+  function reduce(numerator, denominator) {
+    var gcd = function gcd(a, b) {
+      return b ? gcd(b, a % b) : a;
+    };
+    gcd = gcd(numerator, denominator);
+    return [numerator / gcd, denominator / gcd];
+  }
+
   // //---------------------------------------//
   // // Define learning phase 1.
   // //---------------------------------------//
@@ -345,19 +352,24 @@ function buildTimeline(jsPsych) {
   var learning_phase_1 = [];
   var low_quality;
   var val;
+  var prob_val_1;
+  var prob_val_2;
   var color;
+  var reduced_a;
+  var diff_a;
+  var multi_a;
   var not_reduced_a;
-  var not_reduced_b;
   var not_reduced_diff_a;
-  var not_reduced_diff_b;
-  var arr_1;
-  var arr_2;
   var diff_arr_1;
   var diff_arr_2;
   var reward_prob;
   var iters;
   var probe_iters;
   var context_iters;
+  var win_high_array;
+  var win_low_array;
+  var lose_high_array;
+  var lose_low_array;
 
   if (debug) {
     iters = 12;
@@ -369,72 +381,83 @@ function buildTimeline(jsPsych) {
     context_iters = 3;
   }
 
+  reduced_a = reduce(reward_probs * (iters * 2), iters * 2);
+  diff_a = reduced_a[1] - reduced_a[0];
+
+  multi_a = (iters * 2) / reduced_a[1];
+
+  not_reduced_a = reduced_a[0] * multi_a;
+  not_reduced_diff_a = diff_a * multi_a;
+
+  win_high_array = Array(not_reduced_a).fill('win');
+  diff_arr_2 = Array(not_reduced_diff_a).fill('zero');
+  win_high_array = win_high_array.concat(diff_arr_2);
+
+  win_low_array = Array(not_reduced_a).fill('zero');
+  diff_arr_1 = Array(not_reduced_diff_a).fill('win');
+  win_low_array = win_low_array.concat(diff_arr_1);
+
+  lose_high_array = Array(not_reduced_a).fill('lose');
+  diff_arr_2 = Array(not_reduced_diff_a).fill('zero');
+  lose_high_array = lose_high_array.concat(diff_arr_2);
+
+  lose_low_array = Array(not_reduced_a).fill('zero');
+  diff_arr_2 = Array(not_reduced_diff_a).fill('lose');
+  lose_low_array = lose_low_array.concat(diff_arr_2);
+
+  var win_high_array_all;
+  var win_low_array_all;
+  var lose_high_array_all;
+  var lose_low_array_all;
+
+  win_high_array_all = [];
+  win_low_array_all = [];
+  lose_high_array_all = [];
+  lose_low_array_all = [];
+
+  for (var a = 0; a < 8; a++) {
+    win_high_array_all.push(jsPsych.randomization.repeat(win_high_array, 1));
+    win_low_array_all.push(jsPsych.randomization.repeat(win_low_array, 1));
+    lose_high_array_all.push(jsPsych.randomization.repeat(lose_high_array, 1));
+    lose_low_array_all.push(jsPsych.randomization.repeat(lose_low_array, 1));
+  }
+
   // Iteratively define trials
   for (var i = 0; i < iters; i++) {
     // Initialize (temporary) trial array.
     const trials = [];
-    // const missed = [];
 
     // Iterate over unique pairs.
     for (var j = 0; j < 4; j++) {
       // Define metadata.
       total_learning_trial_count++;
 
-      not_reduced_a = reward_probs_a * 100;
-      not_reduced_diff_a = 100 - not_reduced_a;
-      not_reduced_b = reward_probs_b * 100;
-      not_reduced_diff_b = 100 - not_reduced_b;
-
-      if (j == 0) {
+      if (j % 2 == 0) {
         val = 'win';
-        arr_1 = Array(not_reduced_a).fill('zero');
-        diff_arr_1 = Array(not_reduced_diff_a).fill(val);
-        arr_1 = arr_1.concat(diff_arr_1);
-        arr_2 = Array(not_reduced_a).fill(val);
-        diff_arr_2 = Array(not_reduced_diff_a).fill('zero');
-        arr_2 = arr_2.concat(diff_arr_2);
-        reward_prob = reward_probs_a;
-        color = context_array[3];
-      } else if (j == 1) {
-        val = 'lose';
-        arr_1 = Array(not_reduced_a).fill('zero');
-        diff_arr_1 = Array(not_reduced_diff_a).fill(val);
-        arr_1 = arr_1.concat(diff_arr_1);
-        arr_2 = Array(not_reduced_a).fill(val);
-        diff_arr_2 = Array(not_reduced_diff_a).fill('zero');
-        arr_2 = arr_2.concat(diff_arr_2);
-        reward_prob = reward_probs_a;
-        color = context_array[4];
-      } else if (j == 2) {
-        val = 'win';
-        arr_1 = Array(not_reduced_b).fill('zero');
-        diff_arr_1 = Array(not_reduced_diff_b).fill(val);
-        arr_1 = arr_1.concat(diff_arr_1);
-        arr_2 = Array(not_reduced_b).fill(val);
-        diff_arr_2 = Array(not_reduced_diff_b).fill('zero');
-        arr_2 = arr_2.concat(diff_arr_2);
-        reward_prob = reward_probs_b;
+        prob_val_1 = win_high_array_all;
+        prob_val_2 = win_low_array_all;
         color = context_array[3];
       } else {
         val = 'lose';
-        arr_1 = Array(not_reduced_b).fill('zero');
-        diff_arr_1 = Array(not_reduced_diff_b).fill(val);
-        arr_1 = arr_1.concat(diff_arr_1);
-        arr_2 = Array(not_reduced_b).fill(val);
-        diff_arr_2 = Array(not_reduced_diff_b).fill('zero');
-        arr_2 = arr_2.concat(diff_arr_2);
-        reward_prob = reward_probs_b;
+        prob_val_1 = lose_high_array_all;
+        prob_val_2 = lose_low_array_all;
         color = context_array[4];
       }
+
+      // console.log('probvals');
+      // console.log(prob_val_1[1][1]);
+      // console.log(prob_val_1[2 * j + 1][2 * i + 1]);
+      // console.log(prob_val_2);
+      // console.log(prob_val_2[2 * j + 1][2 * i + 1]);
 
       // Append trial (LR).
       var LR = {
         type: jsPsychLearning,
         symbol_L: symbol_array_1[2 * j + 0],
         symbol_R: symbol_array_1[2 * j + 1],
-        outcome_L: jsPsych.randomization.sampleWithoutReplacement(arr_2, 1)[0],
-        outcome_R: jsPsych.randomization.sampleWithoutReplacement(arr_1, 1)[0],
-        probs: reward_prob,
+        outcome_L: prob_val_2[2 * j + 0][2 * i + 0],
+        outcome_R: prob_val_1[2 * j + 0][2 * i + 0],
+        probs: reward_probs,
         counterfactual: cf,
         context: color,
         choices: ['arrowleft', 'arrowright'],
@@ -478,8 +501,8 @@ function buildTimeline(jsPsych) {
         type: jsPsychLearning,
         symbol_L: symbol_array_1[2 * j + 1],
         symbol_R: symbol_array_1[2 * j + 0],
-        outcome_L: jsPsych.randomization.sampleWithoutReplacement(arr_1, 1)[0],
-        outcome_R: jsPsych.randomization.sampleWithoutReplacement(arr_2, 1)[0],
+        outcome_L: prob_val_1[2 * j + 1][2 * i + 1],
+        outcome_R: prob_val_2[2 * j + 1][2 * i + 1],
         probs: reward_prob,
         counterfactual: cf,
         context: color,
@@ -553,14 +576,14 @@ function buildTimeline(jsPsych) {
           u = 'HP';
         } else if ((p == 3 && q == 7) || (q == 3 && p == 7)) {
           u = 'LP';
-        } else if ((p == 0 && q == 1) || (q == 1 && p == 0)) {
-          u = 'SHR';
-        } else if ((p == 2 && q == 3) || (q == 3 && p == 2)) {
-          u = 'SLR';
-        } else if ((p == 4 && q == 5) || (q == 5 && p == 4)) {
-          u = 'SHP';
-        } else if ((p == 6 && q == 7) || (q == 7 && p == 6)) {
-          u = 'SLP';
+          // } else if ((p == 0 && q == 1) || (q == 1 && p == 0)) {
+          //   u = 'SHR';
+          // } else if ((p == 2 && q == 3) || (q == 3 && p == 2)) {
+          //   u = 'SLR';
+          // } else if ((p == 4 && q == 5) || (q == 5 && p == 4)) {
+          //   u = 'SHP';
+          // } else if ((p == 6 && q == 7) || (q == 7 && p == 6)) {
+          //   u = 'SLP';
         } else if (p == q) {
           u = 'SAME';
         } else {
@@ -573,10 +596,10 @@ function buildTimeline(jsPsych) {
           u == 'LR',
           u == 'HP',
           u == 'LP',
-          u == 'SHR',
-          u == 'SLR',
-          u == 'SHP',
-          u == 'SLP',
+          // u == 'SHR',
+          // u == 'SLR',
+          // u == 'SHP',
+          // u == 'SLP',
           u == 'SAME',
         ];
         if (!conditionsArray.includes(true)) {
