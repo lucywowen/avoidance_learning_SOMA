@@ -362,7 +362,6 @@ function buildTimeline(jsPsych) {
   var not_reduced_diff_a;
   var diff_arr_1;
   var diff_arr_2;
-  var reward_prob;
   var iters;
   var probe_iters;
   var context_iters;
@@ -445,18 +444,6 @@ function buildTimeline(jsPsych) {
       // Define metadata.
       total_learning_trial_count++;
 
-      // if (j % 2 == 0) {
-      //   val = 'win';
-      //   prob_val_1 = win_high_array_all;
-      //   prob_val_2 = win_low_array_all;
-      //   color = context_array[3];
-      // } else {
-      //   val = 'lose';
-      //   prob_val_1 = lose_high_array_all;
-      //   prob_val_2 = lose_low_array_all;
-      //   color = context_array[4];
-      // }
-
       if (j == 0) {
         val = 'win';
         prob_val_1 = win_high_array_all[0];
@@ -479,8 +466,21 @@ function buildTimeline(jsPsych) {
         color = context_array[4];
       }
 
+      console.log('i');
+      console.log(i);
+      console.log('2 * j + 0');
+      console.log(2 * j + 0);
+      console.log('2 * j + 1');
+      console.log(2 * j + 1);
+
       console.log('prob_val_1[i]');
       console.log(prob_val_1[i]);
+
+      console.log('prob_val_2[i]');
+      console.log(prob_val_2[i]);
+
+      console.log(symbol_array_1[2 * j + 0]);
+      console.log(symbol_array_1[2 * j + 1]);
 
       // console.log('prob_val_2[2 * j + 0]');
       // console.log(prob_val_2[2 * j + 0][0]);
@@ -544,7 +544,7 @@ function buildTimeline(jsPsych) {
         symbol_R: symbol_array_1[2 * j + 0],
         outcome_L: prob_val_1[i],
         outcome_R: prob_val_2[i],
-        probs: reward_prob,
+        probs: reward_probs,
         counterfactual: cf,
         context: color,
         choices: ['arrowleft', 'arrowright'],
@@ -583,12 +583,16 @@ function buildTimeline(jsPsych) {
       };
       trials.push(RL_node);
     }
+
     // console.log(missed);
     // Shuffle trials. Append.
     learning_phase_1 = learning_phase_1.concat(jsPsych.randomization.repeat(trials, 1));
   }
+
   console.log('total learning trials');
   console.log(total_learning_trial_count);
+  console.log('learning_phase_length');
+  console.log(learning_phase_1.length);
   //------------------------------------//
   // Define probe phase 1.
   //------------------------------------//
