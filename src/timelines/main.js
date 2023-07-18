@@ -84,7 +84,6 @@ function buildTimeline(jsPsych) {
   // Define correct responses
   var correct_trial_count = 0;
   var total_trial_count = 0;
-  var total_learning_trial_count = 0;
   var total_probe_trial_count = 0;
 
   // Define probabilities (default is all 75/25%)
@@ -425,7 +424,6 @@ function buildTimeline(jsPsych) {
     // Iterate over unique pairs.
     for (var j = 0; j < 4; j++) {
       // Define metadata.
-      total_learning_trial_count++;
 
       if (j == 0) {
         val = 'win';
@@ -448,7 +446,6 @@ function buildTimeline(jsPsych) {
         prob_val_2 = lose_low_array_all[1];
         color = context_array[4];
       }
-
 
       // Append trial (LR).
       var LR = {
