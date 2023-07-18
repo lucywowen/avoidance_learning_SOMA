@@ -10,7 +10,6 @@ import jsPsychSurveyMultiChoice from '@jspsych/plugin-survey-multi-choice';
 import jsPsychCallFunction from '@jspsych/plugin-call-function';
 import jsPsychImageKeyboardResponse from '@jspsych/plugin-image-keyboard-response';
 import jsPsychHtmlKeyboardResponse from '@jspsych/plugin-html-keyboard-response';
-// import jspsychPluginHtml from '@adp-psych/jspsych-plugin-html';
 import 'jspsych/css/jspsych.css';
 import '../css/robots-css.min.css';
 import { images } from '../lib/utils';
@@ -70,9 +69,6 @@ function buildTimeline(jsPsych) {
   // Define the contexts.
   var practice_array = ['forrest_1', 'desert_1'];
   var learn_1_array = ['forrest_2', 'desert_4'];
-
-  console.log(symbol_array_1);
-  // console.log(symbol_array_2);
 
   // Randomize the contexts.
   var context_array = jsPsych.randomization.repeat(practice_array, 1);
@@ -404,17 +400,6 @@ function buildTimeline(jsPsych) {
   diff_arr_1 = Array(not_reduced_diff_a).fill('lose');
   lose_low_array = lose_low_array.concat(diff_arr_1);
 
-  console.log('win_high_array');
-  console.log(win_high_array);
-  console.log('win_low_array');
-  console.log(win_low_array);
-
-  console.log('lose_high_array');
-  console.log(lose_high_array);
-  console.log('lose_low_array');
-  console.log(lose_low_array);
-  console.log(lose_low_array.length);
-
   var win_high_array_all;
   var win_low_array_all;
   var lose_high_array_all;
@@ -431,8 +416,6 @@ function buildTimeline(jsPsych) {
     lose_high_array_all.push(jsPsych.randomization.repeat(lose_high_array, 1));
     lose_low_array_all.push(jsPsych.randomization.repeat(lose_low_array, 1));
   }
-  console.log('length of arrays');
-  console.log(win_high_array_all.length);
 
   // Iteratively define trials
   for (var i = 0; i < iters; i++) {
@@ -466,30 +449,6 @@ function buildTimeline(jsPsych) {
         color = context_array[4];
       }
 
-      console.log('i');
-      console.log(i);
-      console.log('2 * j + 0');
-      console.log(2 * j + 0);
-      console.log('2 * j + 1');
-      console.log(2 * j + 1);
-
-      console.log('prob_val_1[i]');
-      console.log(prob_val_1[i]);
-
-      console.log('prob_val_2[i]');
-      console.log(prob_val_2[i]);
-
-      console.log(symbol_array_1[2 * j + 0]);
-      console.log(symbol_array_1[2 * j + 1]);
-
-      // console.log('prob_val_2[2 * j + 0]');
-      // console.log(prob_val_2[2 * j + 0][0]);
-
-      // console.log('prob_val_1[2 * j + 0]');
-      // console.log(prob_val_1[2 * j + 0][0]);
-
-      // console.log('prob_val_2[2 * j + 0][i]');
-      // console.log(prob_val_2[2 * j + 0][i][0]);
 
       // Append trial (LR).
       var LR = {
@@ -589,10 +548,6 @@ function buildTimeline(jsPsych) {
     learning_phase_1 = learning_phase_1.concat(jsPsych.randomization.repeat(trials, 1));
   }
 
-  console.log('total learning trials');
-  console.log(total_learning_trial_count);
-  console.log('learning_phase_length');
-  console.log(learning_phase_1.length);
   //------------------------------------//
   // Define probe phase 1.
   //------------------------------------//
@@ -716,8 +671,7 @@ function buildTimeline(jsPsych) {
 
   var final_trial = {
     type: jsPsychHtmlKeyboardResponse,
-    stimulus: `<p>You've finished the last task. Thanks for participating!</p>
-      <p><a href="https://app.prolific.co/submissions/complete?cc=CK5KGDJA">Click here to return to Prolific and complete the study</a>.</p>`,
+    stimulus: `<p>You've finished the last task. Thanks for participating!</p>`,
     choices: 'NO_KEYS',
   };
 
