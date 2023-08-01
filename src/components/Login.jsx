@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
@@ -7,6 +7,12 @@ function Login({ handleLogin, initialParticipantID, initialStudyID, validationFu
   const [participantId, setParticipant] = useState(initialParticipantID);
   const [studyId, setStudy] = useState(initialStudyID);
   const [isError, setIsError] = useState(false);
+
+  useEffect(() => {
+    // Update based on environment variables
+    setParticipant(initialParticipantID);
+    setStudy(initialStudyID);
+  }, [initialParticipantID, initialStudyID]);
 
   // Function to log in participant
   function handleSubmit(e) {
