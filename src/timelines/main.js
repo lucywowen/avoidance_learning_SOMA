@@ -317,16 +317,11 @@ function buildTimeline(jsPsych) {
     type: jsPsychInstructions,
     pages: () => {
       return [
-        '<p style="font-size:' +
-          font_size +
-          'px;">That is the end of the learning phase. Great job! You have made ' +
-          Math.round((correct_trial_count / total_trial_count) * 100) +
-          '% correct',
-                  '<p style="font-size:'+font_size+'px;">In this next part, you will see the same knights as before, but they will be shown in new pair combinations. <br>Again, your job will be to select the knight you would like to join your team.',
-        '<p style="font-size:'+font_size+'px;">As you make your choices, you will not receive any feedback after your choice.',
-        '<p style="font-size:'+font_size+'px;">You should still choose the knight you think is better on each trial.<br>Your choices will still contribute to your performance bonus.',
-        '<p style="font-size:'+font_size+'px;">Get ready to make your selections.<br><br>Choose wisely!'
-      ];
+        '<p style="font-size:'+font_size+'px;">That is the end of the selection phase. Great job!',
+        '<p style="font-size:'+font_size+'px;">Take a break for a few moments and<br>click next when you are ready to continue.',
+        '<p style="font-size:'+font_size+'px;">Great! You are now going to <b>test</b> a new set of knights.<br>The task is the same as before.',
+        '<p style="font-size:'+font_size+'px;">Remember to pay close attention to the symbol on each knight<br>and try to earn as many points as you can.',
+      ]
     },
   };
 
