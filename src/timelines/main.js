@@ -321,7 +321,7 @@ function buildTimeline(jsPsych) {
         '<p style="font-size:'+font_size+'px;">Take a break for a few moments and<br>click next when you are ready to continue.',
         '<p style="font-size:'+font_size+'px;">Great! You are now going to <b>test</b> a new set of knights.<br>The task is the same as before.',
         '<p style="font-size:'+font_size+'px;">Remember to pay close attention to the symbol on each knight<br>and try to earn as many points as you can.',
-      ]
+      ];
     },
   };
 
