@@ -675,8 +675,11 @@ function buildTimeline(jsPsych) {
 
   var final_trial = {
     type: jsPsychHtmlKeyboardResponse,
-    stimulus: `<p>You've finished the last task. Thanks for participating!</p>
-      <p><a href="https://brown.co1.qualtrics.com/jfe/form/SV_eVxacnZXKQV5QY6?APPID=data.subject_id">Click here to return to Prolific and complete the study</a>.</p>`,
+    stimulus: function () {
+      const participant_id = jsPsych.data.getLastTrialData().trials[0].participant_id;
+      const study_id = jsPsych.data.getLastTrialData().trials[0].study_id;
+      return `<p><a href="https://brown.co1.qualtrics.com/jfe/form/SV_eVxacnZXKQV5QY6?APPID=${participant_id}&STUDYID=${study_id}">Click here to move to Qualtrics and complete the study</a>.</p>`;
+    },
     choices: 'NO_KEYS',
   };
 

@@ -17,6 +17,7 @@ function Login({ handleLogin, initialParticipantID, initialStudyID, validationFu
   // Function to log in participant
   function handleSubmit(e) {
     e.preventDefault();
+    console.log(participantId, studyId);
     // Logs user in if a valid participant/study id combination is given
     validationFunction(participantId, studyId).then((isValid) => {
       setIsError(!isValid);
