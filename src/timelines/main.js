@@ -199,8 +199,8 @@ function buildTimeline(jsPsych) {
     outcome_L: 'zero',
     outcome_R: 'win',
     context: context_array[0],
-    choices: ['arrowleft', 'arrowright'],
-    correct: 'arrowright',
+    choices: ['ArrowLeft', 'ArrowRight'],
+    correct: 'ArrowRight',
     feedback_duration: 2000,
   };
 
@@ -218,8 +218,8 @@ function buildTimeline(jsPsych) {
     outcome_L: 'lose',
     outcome_R: 'zero',
     context: context_array[1],
-    choices: ['arrowleft', 'arrowright'],
-    correct: 'arrowright',
+    choices: ['ArrowLeft', 'ArrowRight'],
+    correct: 'ArrowRight',
     feedback_duration: 2000,
   };
 
@@ -464,8 +464,8 @@ function buildTimeline(jsPsych) {
         probs: reward_probs,
         counterfactual: cf,
         context: color,
-        choices: ['arrowleft', 'arrowright'],
-        correct: val == 'win' ? 'arrowleft' : 'arrowright',
+        choices: ['ArrowLeft', 'ArrowRight'],
+        correct: val == 'win' ? 'ArrowLeft' : 'ArrowRight',
         data: { block: 1 },
         on_finish: function (data) {
           // Evaluate missing data
@@ -510,8 +510,8 @@ function buildTimeline(jsPsych) {
         probs: reward_probs,
         counterfactual: cf,
         context: color,
-        choices: ['arrowleft', 'arrowright'],
-        correct: val == 'win' ? 'arrowright' : 'arrowleft',
+        choices: ['ArrowLeft', 'ArrowRight'],
+        correct: val == 'win' ? 'ArrowRight' : 'ArrowLeft',
         data: { block: 1 },
         on_finish: function (data) {
           // Evaluate missing data
@@ -614,7 +614,7 @@ function buildTimeline(jsPsych) {
             symbol_L: symbol_array_1[p],
             symbol_R: symbol_array_1[q],
             context: context_array[4 - c],
-            choices: ['arrowleft', 'arrowright'],
+            choices: ['ArrowLeft', 'ArrowRight'],
             data: { block: 1 },
             on_finish: function (data) {
               // Evaluate missing data
