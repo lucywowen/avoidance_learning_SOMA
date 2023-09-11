@@ -26,13 +26,13 @@ const info = {
     key_forward: {
       type: ParameterType.KEYCODE,
       pretty_name: 'Key forward',
-      default: 'arrowright',
+      default: 'j',
       description: 'The key the subject can press in order to advance to the next page.',
     },
     key_backward: {
       type: ParameterType.KEYCODE,
       pretty_name: 'Key backward',
-      default: 'arrowleft',
+      default: 'f',
       description: 'The key that the subject can press to return to the previous page.',
     },
   },

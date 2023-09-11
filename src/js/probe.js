@@ -39,7 +39,7 @@ const info = {
       type: ParameterType.KEYCODE,
       array: true,
       pretty_name: 'Choices',
-      default: ['arrowleft', 'arrowright'],
+      default: ['f', 'j'],
       description: 'The keys the subject is allowed to press to respond to the stimulus.',
     },
     choice_duration: {
@@ -180,14 +180,14 @@ class ProbePlugin {
       response.key = info.key;
 
       // Visually indicate chosen robot.
-      if (response.key == 'arrowleft') {
+      if (response.key == 'f') {
         display_element.querySelector('#ringL').setAttribute('status', 'chosen');
       } else {
         display_element.querySelector('#ringR').setAttribute('status', 'chosen');
       }
 
       // Visually indicate chosen robot.
-      if (response.key == 'arrowleft') {
+      if (response.key == 'f') {
         display_element.querySelector('#visorL').setAttribute('status', 'chosen');
       } else {
         display_element.querySelector('#visorR').setAttribute('status', 'chosen');

@@ -99,16 +99,18 @@ function buildTimeline(jsPsych) {
 
   var instructions_000 = {
     type: jsPsychImageKeyboardResponse,
-    stimulus: images['keyboard.png'],
+    stimulus: images['keyboard_key_j.png'],
     stimulus_height: 400,
     prompt:
       '<p style="font-size:' +
       font_size +
-      'px;">Welcome to the experiment. You can press the Left and Right arrow keys to move through the instructions.</p>',
+      'px;">Welcome to the experiment. You can press the f and j keys to move through the instructions.</p>',
   };
 
   var instructions_00 = {
     type: jsPsychInstructions,
+    key_forward: 'j',
+    key_backward: 'f',
     pages: [
       '<p style="font-size:' +
         font_size +
@@ -177,7 +179,7 @@ function buildTimeline(jsPsych) {
   var instructions_01 = {
     type: jsPsychMyInstructions,
     pages: [
-      'We are now starting the experiment.<br><br>Use the left/right arrow keys to navigate the instructions.',
+      'We are now starting the experiment.<br><br>Use the f/j keys to navigate the instructions.',
       'In this task, you are picking a team of knights.<br>The knights will look like the ones below.',
       'Each knight will have a <b>unique symbol</b> on its chestplate.<br>This symbol will help you identify each knight.',
       "You'll also pick your team of knights from different places, either the desert or forest.",
@@ -185,7 +187,7 @@ function buildTimeline(jsPsych) {
       "Once you've selected your knight, their platform and visor will light up to indicate your choice.",
       'To help you learn, we will also show you the dollars you<br><i>could have earned</i> if you had chosen the other knight.<br><b>NOTE:</b> You will earn dollars only for the knight you chose.',
       'Some knights are better than others. Some will gain dollars while others will avoid losing dollars. Try to earn as many dollars as you can.',
-      "Now let's practice with the knights below. Using the left/right<br>arrow keys, select the knights for testing and try to learn<br>which will give you more dollars.",
+      "Now let's practice with the knights below. Using the f/j keys, select the knights for testing and try to learn<br>which will give you more dollars.",
       '<b>HINT:</b> You can differentiate between the knights based on the symbols on their chestplate.  Try to avoid losing dollars.',
     ],
     symbol_L: 'V',
@@ -199,8 +201,8 @@ function buildTimeline(jsPsych) {
     outcome_L: 'zero',
     outcome_R: 'win',
     context: context_array[0],
-    choices: ['arrowleft', 'arrowright'],
-    correct: 'arrowright',
+    choices: ['f', 'j'],
+    correct: 'j',
     feedback_duration: 2000,
   };
 
@@ -218,8 +220,8 @@ function buildTimeline(jsPsych) {
     outcome_L: 'lose',
     outcome_R: 'zero',
     context: context_array[1],
-    choices: ['arrowleft', 'arrowright'],
-    correct: 'arrowright',
+    choices: ['f', 'j'],
+    correct: 'j',
     feedback_duration: 2000,
   };
 
@@ -301,11 +303,13 @@ function buildTimeline(jsPsych) {
 
   var ready = {
     type: jsPsychInstructions,
+    key_forward: 'j',
+    key_backward: 'f',
     pages: [
       '<p style="font-size:' + font_size + 'px;">Great job! You passed the comprehension check.',
       '<p style="font-size:' +
         font_size +
-        'px;">Get ready to begin the experiment.<br>Press the right arrow key when you are ready to start.',
+        'px;">Get ready to begin the experiment.<br>Press the j key when you are ready to start.',
     ],
   };
 
@@ -315,6 +319,8 @@ function buildTimeline(jsPsych) {
 
   var instructions_05 = {
     type: jsPsychInstructions,
+    key_forward: 'j',
+    key_backward: 'f',
     pages: () => {
       return [
         '<p style="font-size:' +
@@ -464,8 +470,8 @@ function buildTimeline(jsPsych) {
         probs: reward_probs,
         counterfactual: cf,
         context: color,
-        choices: ['arrowleft', 'arrowright'],
-        correct: val == 'win' ? 'arrowleft' : 'arrowright',
+        choices: ['f', 'j'],
+        correct: val == 'win' ? 'f' : 'j',
         data: { block: 1 },
         on_finish: function (data) {
           // Evaluate missing data
@@ -510,8 +516,8 @@ function buildTimeline(jsPsych) {
         probs: reward_probs,
         counterfactual: cf,
         context: color,
-        choices: ['arrowleft', 'arrowright'],
-        correct: val == 'win' ? 'arrowright' : 'arrowleft',
+        choices: ['f', 'j'],
+        correct: val == 'win' ? 'j' : 'f',
         data: { block: 1 },
         on_finish: function (data) {
           // Evaluate missing data
@@ -614,7 +620,7 @@ function buildTimeline(jsPsych) {
             symbol_L: symbol_array_1[p],
             symbol_R: symbol_array_1[q],
             context: context_array[4 - c],
-            choices: ['arrowleft', 'arrowright'],
+            choices: ['f', 'j'],
             data: { block: 1 },
             on_finish: function (data) {
               // Evaluate missing data
@@ -659,6 +665,8 @@ function buildTimeline(jsPsych) {
   // Complete screen
   var complete = {
     type: jsPsychInstructions,
+    key_forward: 'j',
+    key_backward: 'f',
     pages: () => {
       return [
         '<p style="font-size:' +
