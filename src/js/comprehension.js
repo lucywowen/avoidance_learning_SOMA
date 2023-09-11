@@ -53,7 +53,7 @@ class ComprehensionPlugin {
     ];
 
     // Define correct answers.
-    var correct = ['f/j</i> key', 'the knight I choose', 'True', 'Yes'];
+    var correct = ['f/j</i> keys', 'the knight I choose', 'True', 'Yes'];
 
     // ---------------------------------- //
     // Section 2: Define HTML             //

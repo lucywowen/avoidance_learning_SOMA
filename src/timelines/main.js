@@ -104,7 +104,7 @@ function buildTimeline(jsPsych) {
     prompt:
       '<p style="font-size:' +
       font_size +
-      'px;">Welcome to the experiment. You can press the f and j keys to move through the instructions.</p>',
+      'px;">Welcome to the experiment. You can press the <b>f</b> and <b>j</b> keys to move through the instructions.</p>',
   };
 
   var instructions_00 = {
@@ -179,7 +179,7 @@ function buildTimeline(jsPsych) {
   var instructions_01 = {
     type: jsPsychMyInstructions,
     pages: [
-      'We are now starting the experiment.<br><br>Use the f/j keys to navigate the instructions.',
+      'We are now starting the experiment.<br><br>Use the <b>f</b> and <b>j</b> keys to navigate the instructions.',
       'In this task, you are picking a team of knights.<br>The knights will look like the ones below.',
       'Each knight will have a <b>unique symbol</b> on its chestplate.<br>This symbol will help you identify each knight.',
       "You'll also pick your team of knights from different places, either the desert or forest.",
@@ -187,7 +187,7 @@ function buildTimeline(jsPsych) {
       "Once you've selected your knight, their platform and visor will light up to indicate your choice.",
       'To help you learn, we will also show you the dollars you<br><i>could have earned</i> if you had chosen the other knight.<br><b>NOTE:</b> You will earn dollars only for the knight you chose.',
       'Some knights are better than others. Some will gain dollars while others will avoid losing dollars. Try to earn as many dollars as you can.',
-      "Now let's practice with the knights below. Using the f/j keys, select the knights for testing and try to learn<br>which will give you more dollars.",
+      "Now let's practice with the knights below. Using the <b>f</b> and <b>j</b> keys, select the knights for testing and try to learn<br>which will give you more dollars.",
       '<b>HINT:</b> You can differentiate between the knights based on the symbols on their chestplate.  Try to avoid losing dollars.',
     ],
     symbol_L: 'V',
@@ -309,7 +309,7 @@ function buildTimeline(jsPsych) {
       '<p style="font-size:' + font_size + 'px;">Great job! You passed the comprehension check.',
       '<p style="font-size:' +
         font_size +
-        'px;">Get ready to begin the experiment.<br>Press the j key when you are ready to start.',
+        'px;">Get ready to begin the experiment.<br>Press the <b>j</b> key when you are ready to start.',
     ],
   };
 
