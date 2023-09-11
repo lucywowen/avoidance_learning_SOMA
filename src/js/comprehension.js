@@ -46,14 +46,14 @@ class ComprehensionPlugin {
 
     // Define response options.
     var options = [
-      ['<i>a/d</i> keys', '<i>1/0</i> keys', 'left/right</i> arrow keys'],
+      ['<i>a/d</i> keys', '<i>1/0</i> keys', 'f/j</i> keys'],
       ['the knight I choose', 'the knight I did not choose', 'both knights'],
       ['True', 'False'],
       ['Yes', 'No'],
     ];
 
     // Define correct answers.
-    var correct = ['left/right</i> arrow keys', 'the knight I choose', 'True', 'Yes'];
+    var correct = ['f/j</i> keys', 'the knight I choose', 'True', 'Yes'];
 
     // ---------------------------------- //
     // Section 2: Define HTML             //

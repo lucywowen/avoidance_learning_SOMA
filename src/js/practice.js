@@ -60,7 +60,7 @@ const info = {
       type: ParameterType.KEY,
       array: true,
       pretty_name: 'Choices',
-      default: ['ArrowLeft', 'ArrowRight'],
+      default: ['f', 'j'],
       description: 'The keys the subject is allowed to press to respond to the stimulus.',
     },
     robot_duration: {
@@ -245,14 +245,14 @@ class PracticePlugin {
       }
 
       // Visually indicate chosen robot.
-      if (response.key == 'ArrowLeft') {
+      if (response.key == 'f') {
         display_element.querySelector('#ringL').setAttribute('status', 'chosen');
       } else {
         display_element.querySelector('#ringR').setAttribute('status', 'chosen');
       }
 
       // Visually indicate chosen robot.
-      if (response.key == 'ArrowLeft') {
+      if (response.key == 'f') {
         display_element.querySelector('#visorL').setAttribute('status', 'chosen');
       } else {
         display_element.querySelector('#visorR').setAttribute('status', 'chosen');
@@ -274,7 +274,7 @@ class PracticePlugin {
       trial.feedback_code = code;
 
       // Update left side outcome
-      if (response.key == 'ArrowLeft' || trial.counterfactual) {
+      if (response.key == 'f' || trial.counterfactual) {
         if (trial.outcome_L == 'win') {
           display_element.querySelector('#screenL').innerHTML = trial.feedback_win;
           display_element.querySelector('#screenL').setAttribute('outcome', 'win');
@@ -297,7 +297,7 @@ class PracticePlugin {
       }
 
       // Update right side outcome
-      if (response.key == 'ArrowRight' || trial.counterfactual) {
+      if (response.key == 'j' || trial.counterfactual) {
         if (trial.outcome_R == 'win') {
           display_element.querySelector('#screenR').innerHTML = trial.feedback_win;
           display_element.querySelector('#screenR').setAttribute('outcome', 'win');
