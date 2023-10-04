@@ -306,7 +306,7 @@ function buildTimeline(jsPsych) {
     key_forward: 'j',
     key_backward: 'f',
     pages: [
-      '<p style="font-size:' + font_size + 'px;">Great job! You passed the comprehension check.',
+      '<p style="font-size:' + font_size + 'px;">Great job! You passed the comprehension check. <br>Press the <b>j</b> key to continue.',
       '<p style="font-size:' +
         font_size +
         'px;">Get ready to begin the experiment.<br>Press the <b>j</b> key when you are ready to start.',
@@ -665,8 +665,6 @@ function buildTimeline(jsPsych) {
   // Complete screen
   var complete = {
     type: jsPsychInstructions,
-    key_forward: 'j',
-    key_backward: 'f',
     pages: () => {
       return [
         '<p style="font-size:' +
